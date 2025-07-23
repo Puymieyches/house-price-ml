@@ -32,3 +32,6 @@ black==24.3.0
 
 # Code quality
 flake8==7.0.0
+
+# Type checking
+mypy==1.4.1
