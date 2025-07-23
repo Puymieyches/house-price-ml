@@ -1,0 +1,15 @@
+{
+  "name": "ML Dev Container",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "ml-dev",
+  "workspaceFolder": "/app",
+  "settings": {
+    "python.defaultInterpreterPath": "/usr/local/bin/python",
+    "python.analysis.extraPaths": ["src", "tests"]
+  },
+  "extensions": [
+    "ms-python.python",
+    "ms-python.vscode-pylance"
+  ],
+  "postCreateCommand": "pip install -r requirements.txt"
+}
