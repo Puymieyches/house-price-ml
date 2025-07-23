@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  ml-dev:
+    build: .
+    container_name: house-price-ml
+    ports:
+      - "8888:8888"  # Jupyter
+      - "5000:5000"  # MLflow
+    volumes:
+      - .:/app
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./mlflow:/app/mlflow
+    environment:
+      - PYTHONPATH=/app
+    command: bash -c "
+      mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:///mlflow/mlflow.db --default-artifact-root ./mlflow/artifacts &
+      jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+      "
+
+  # Optional: PostgreSQL for production MLflow backend
+  postgres:
+    image: postgres:15
+    container_name: ml-postgres
+    environment:
+      POSTGRES_DB: mlflow
+      POSTGRES_USER: mlflow
+      POSTGRES_PASSWORD: mlflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    profiles:
+      - production
+
+volumes:
+  postgres_data:
