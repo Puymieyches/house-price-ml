@@ -289,7 +289,7 @@ def validate_data(df: pd.DataFrame) -> Dict[str, any]:
 # Convenience function for common preprocessing pipeline
 def preprocess_housing_data(
     df: pd.DataFrame,
-    remove_outliers: bool = False,
+    remove_outliers_bool: bool = False,
     missing_strategy: Dict[str, str] = None,
 ) -> pd.DataFrame:
     """
@@ -313,13 +313,13 @@ def preprocess_housing_data(
     df_processed = handle_missing_values(df_processed, missing_strategy)
 
     # Step 3: Remove outliers if requested
-    if remove_outliers:
+    if remove_outliers_bool:
         df_processed = remove_outliers(df_processed)
 
     # Step 4: Final validation
     validation = validate_data(df_processed)
 
-    print(f"Preprocessing complete!")
+    print("Preprocessing complete!")
     print(
         f"Final dataset: {validation['total_records']} records, {validation['total_columns']} columns"
     )
