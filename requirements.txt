@@ -29,3 +29,6 @@ click==8.1.6
 
 # Formatting
 black==24.3.0
+
+# Code quality
+flake8==7.0.0
