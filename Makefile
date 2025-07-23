@@ -22,6 +22,12 @@ logs: ## Show container logs
 test: ## Run tests
 	docker-compose exec ml-dev pytest tests/ -v
 
+test-data: ## Test data processing functions specifically
+	docker-compose exec ml-dev pytest tests/test_data.py -v
+
+test-coverage: ## Run tests with coverage report
+	docker-compose exec ml-dev pytest tests/ --cov=src --cov-report=html --cov-report=term
+	
 lint: ## Run code linting
 	docker-compose exec ml-dev flake8 src/ tests/
 
