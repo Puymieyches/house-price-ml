@@ -1,0 +1,21 @@
+{
+  "name": "ML Dev Container",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "ml-dev",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.analysis.extraPaths": ["src", "tests"],
+        "python.linting.pylintPath": "/usr/local/bin/pylint",
+        "pylint.importStrategy": "fromEnvironment"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  },
+  "postCreateCommand": "pip install -r requirements.txt"
+}
