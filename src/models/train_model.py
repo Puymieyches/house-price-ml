@@ -1,7 +1,9 @@
-'''Example Logging usage in code'''
+"""Example Logging usage in code"""
+
 from src.utils.logging import setup_logging
 
 logger = setup_logging(__name__)
+
 
 def train_model(data):
     logger.info("Starting model training")
@@ -11,4 +13,3 @@ def train_model(data):
     except Exception as e:
         logger.error("Model training failed: %s", str(e))
         raise
-    
