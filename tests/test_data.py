@@ -1,5 +1,6 @@
 # tests/test_data.py
 import pandas as pd
+from pandas.api.types import CategoricalDtype
 from src.data.preprocess import (
     clean_data,
     handle_missing_values,
@@ -82,7 +83,7 @@ def test_fix_data_types():
     # Assert
     assert pd.api.types.is_numeric_dtype(result["price"])
     assert pd.api.types.is_datetime64_any_dtype(result["sale_date"])
-    assert pd.api.types.is_categorical_dtype(result["neighborhood"])
+    assert isinstance(result["neighborhood"].dtype, CategoricalDtype)
 
 
 def test_handle_missing_values_median():
