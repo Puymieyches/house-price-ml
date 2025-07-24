@@ -1,4 +1,4 @@
-# tests/test_data.py
+"""Tests for data validation and preprocessing functions."""
 import pandas as pd
 from pandas.api.types import CategoricalDtype
 from src.data.preprocess import (

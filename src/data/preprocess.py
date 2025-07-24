@@ -1,9 +1,9 @@
-# src/data/preprocess.py
 """
 Data preprocessing utilities for housing price prediction.
 
 This module provides functions for cleaning and preprocessing housing data,
 including handling missing values, outliers, and data type conversions.
+
 """
 from typing import Dict
 import pandas as pd
