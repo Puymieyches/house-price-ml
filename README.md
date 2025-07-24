@@ -71,3 +71,13 @@ Current best model: [To be updated]
 - [Data Dictionary](docs/data-dictionary.md)
 - [Model Documentation](docs/models.md)
 - [API Documentation](docs/api.md)
+
+## 📚 Helpful Commands
+
+- On load > git pull (update branch with changes from main)
+- docker-compose up -d
+- docker-compose exec ml-dev _insert command_ >> runs commands in the container
+- Tests:
+  - docker-compose exec ml-dev black/flake8/mypy src/ tests/
+  - (Run all tests) docker-compose exec ml-dev pytest tests/ -v
+- Closing out > git push > docker-compose down
