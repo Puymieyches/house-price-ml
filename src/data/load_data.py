@@ -6,13 +6,13 @@ housing datasets from various sources.
 
 """
 
-import pandas as pd
-import numpy as np
-from pathlib import Path
-import requests
 import zipfile
 import os
+from pathlib import Path
 from typing import Tuple, Optional
+import requests
+import pandas as pd
+import numpy as np
 from src.utils.logging import setup_logging
 
 logger = setup_logging(__name__)
@@ -30,7 +30,7 @@ def download_housing_data(force_download: bool = False) -> None:
     dataset_path = data_dir / "housing_data.csv"
     
     if dataset_path.exists() and not force_download:
-        logger.info(f"Dataset already exists at {dataset_path}")
+        logger.info("Dataset already exists at %s", dataset_path)
         return
     
     logger.info("Downloading housing dataset...")
@@ -41,7 +41,7 @@ def download_housing_data(force_download: bool = False) -> None:
     
     # Save to CSV
     housing_data.to_csv(dataset_path, index=False)
-    logger.info(f"Dataset saved to {dataset_path}")
+    logger.info("Dataset saved to %s", dataset_path)
     
     # Create data dictionary
     create_data_dictionary(data_dir)
@@ -258,7 +258,7 @@ This dataset contains information about residential property sales, including pr
     with open(dict_path, 'w') as f:
         f.write(dictionary)
     
-    logger.info(f"Data dictionary created at {dict_path}")
+    logger.info("Data dictionary created at %s", dict_path)
 
 def load_housing_data() -> pd.DataFrame:
     """
@@ -273,13 +273,13 @@ def load_housing_data() -> pd.DataFrame:
         logger.info("Housing data not found, downloading...")
         download_housing_data()
     
-    logger.info(f"Loading housing data from {data_path}")
+    logger.info("Loading housing data from %s", data_path)
     df = pd.read_csv(data_path)
     
     # Convert sale_date to datetime
     df['sale_date'] = pd.to_datetime(df['sale_date'])
     
-    logger.info(f"Loaded {len(df)} records with {len(df.columns)} columns")
+    logger.info("Loaded %d records with %d columns", len(df), len(df.columns))
     
     return df
 
